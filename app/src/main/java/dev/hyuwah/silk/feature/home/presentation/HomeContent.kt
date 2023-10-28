@@ -2,39 +2,34 @@ package dev.hyuwah.silk.feature.home.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.ElevatedFilterChip
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.gigamole.composeshadowsplus.softlayer.SoftLayerShadowContainer
 import dev.hyuwah.silk.R
 import dev.hyuwah.silk.feature.home.data.local.DummyLocalDataSource
+import dev.hyuwah.silk.feature.home.domain.model.Product
 import dev.hyuwah.silk.ui.button.SilkButton
 import dev.hyuwah.silk.ui.button.SilkOutlinedButton
 import dev.hyuwah.silk.ui.section.CardBanner
@@ -42,7 +37,7 @@ import dev.hyuwah.silk.ui.section.CardBannerImagePos
 import dev.hyuwah.silk.ui.section.GetNotificationBanner
 import dev.hyuwah.silk.ui.theme.SILKTheme
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeContent() {
     val servicePackages by remember {
@@ -51,6 +46,20 @@ fun HomeContent() {
     val products by remember {
         mutableStateOf(DummyLocalDataSource.getProducts())
     }
+
+
+    var searchQuery by remember {
+        mutableStateOf("")
+    }
+    val productTypesFilter = listOf(
+        "All Product" to null,
+        "Layanan Kesehatan" to Product.Type.HealthService,
+        "Alat Kesehatan" to Product.Type.MedicalDevice,
+    )
+    var selectedProductType by remember {
+        mutableStateOf<Product.Type?>(null)
+    }
+
     Scaffold(
         topBar = {
             Row(
@@ -125,38 +134,28 @@ fun HomeContent() {
             // Products & Services section (horizontal list)
             stickyHeader {
                 HomeProductSearchFilter(
-                    modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    searchQuery = searchQuery,
+                    productTypesFilter = productTypesFilter,
+                    selectedProductType = selectedProductType,
+                    onSearchQuery = {
+                        searchQuery = it
+                    },
+                    onProductTypeChanged = {
+                        selectedProductType = it
+                    }
                 )
-            }
-            item {
-                Row(
-                    modifier = Modifier
-                        .horizontalScroll(rememberScrollState())
-                        .padding(horizontal = 18.dp, vertical = 8.dp)
-                ) {
-                    ElevatedFilterChip(
-                        selected = true,
-                        onClick = { /*TODO*/ },
-                        label = { Text(text = "All Product") })
-                    Spacer(modifier = Modifier.width(16.dp))
-                    ElevatedFilterChip(
-                        selected = false,
-                        onClick = { /*TODO*/ },
-                        label = { Text(text = "Layanan Kesehatan") })
-                    Spacer(modifier = Modifier.width(16.dp))
-                    ElevatedFilterChip(
-                        selected = false,
-                        onClick = { /*TODO*/ },
-                        label = { Text(text = "Alat Kesehatan") })
-                }
             }
             item {
                 LazyRow(
                     contentPadding = PaddingValues(horizontal = 16.dp),
                     modifier = Modifier
                 ) {
-                    items(products, key = { it.name } ) { data ->
-                        ProductCard(data = data, onClicked = {}, modifier = Modifier)
+                    items(products.filter { product ->
+                      product.name.lowercase().contains(searchQuery.lowercase().trim())
+                              && (selectedProductType?.let { product.type == it } ?: true)
+                    }, key = { it.name } ) { data ->
+                        ProductCard(data = data, onClicked = {}, modifier = Modifier.animateItemPlacement())
                     }
                 }
             }

@@ -1,7 +1,6 @@
 package dev.hyuwah.silk.feature.home.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,6 +36,7 @@ import dev.hyuwah.silk.R
 import dev.hyuwah.silk.common.utils.toRupiahString
 import dev.hyuwah.silk.feature.home.data.local.DummyLocalDataSource
 import dev.hyuwah.silk.feature.home.domain.model.Product
+import dev.hyuwah.silk.ui.modifier.plainClickable
 import dev.hyuwah.silk.ui.theme.LightGrey
 import dev.hyuwah.silk.ui.theme.Orange
 import dev.hyuwah.silk.ui.theme.SILKTheme
@@ -69,9 +69,7 @@ fun ProductCard(
         color = Color.White,
         modifier = modifier
             .padding(8.dp)
-            .clickable {
-                onClicked(data)
-            }
+            .plainClickable { onClicked(data) }
     ) {
         Column(
             modifier = Modifier.width(160.dp)

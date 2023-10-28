@@ -1,7 +1,6 @@
 package dev.hyuwah.silk.feature.home.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +31,7 @@ import dev.hyuwah.silk.R
 import dev.hyuwah.silk.common.utils.toRupiahString
 import dev.hyuwah.silk.feature.home.data.local.DummyLocalDataSource
 import dev.hyuwah.silk.feature.home.domain.model.ServicePackage
+import dev.hyuwah.silk.ui.modifier.plainClickable
 import dev.hyuwah.silk.ui.theme.Grey
 import dev.hyuwah.silk.ui.theme.Orange
 import dev.hyuwah.silk.ui.theme.SILKTheme
@@ -50,9 +50,9 @@ fun ServicePackageCard(
         shadowElevation = 2.dp,
         shape = RoundedCornerShape(16.dp),
         color = Color.White,
-        modifier = modifier.padding(vertical = 8.dp).clickable {
-            onClicked(data)
-        }
+        modifier = modifier
+            .padding(vertical = 8.dp)
+            .plainClickable { onClicked(data) }
     ) {
         Row(
             modifier = Modifier
