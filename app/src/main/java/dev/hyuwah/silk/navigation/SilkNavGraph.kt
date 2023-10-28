@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.hyuwah.silk.feature.authentication.presentation.AuthScreen
+import dev.hyuwah.silk.feature.home.presentation.HomeScreen
 
 @Composable
 fun SilkNavGraph(
@@ -20,11 +21,7 @@ fun SilkNavGraph(
             AuthScreen(navController = navController)
         }
         composable(Screens.Home.route) {
-            Scaffold {
-                Box(modifier = Modifier.padding(it)) {
-                    Text(text = "Home Placeholder")
-                }
-            }
+            HomeScreen(navController = navController)
         }
         composable(Screens.Profile.route) {
             Scaffold {
