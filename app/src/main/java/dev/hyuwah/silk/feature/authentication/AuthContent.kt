@@ -25,6 +25,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.hyuwah.silk.R
+import dev.hyuwah.silk.feature.authentication.domain.model.RegistrationData
 import dev.hyuwah.silk.ui.theme.PaleDarkBlue
 import dev.hyuwah.silk.ui.theme.SILKTheme
 import dev.hyuwah.silk.ui.theme.SilkTextStyle
@@ -34,12 +35,17 @@ enum class FormType {
 }
 
 @Composable
-fun AuthContent() {
+fun AuthContent(
+    state: AuthState,
+    modifier: Modifier = Modifier,
+    onLogin: (email: String, password: String) -> Unit = {_,_ -> },
+    onRegister: (registrationData: RegistrationData) -> Unit = {}
+) {
     var formType by remember {
         mutableStateOf(FormType.Login)
     }
     Column(
-        modifier = Modifier.verticalScroll(rememberScrollState()),
+        modifier = modifier.verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.End
     ) {
         val authTitle = buildAnnotatedString {
@@ -73,11 +79,11 @@ fun AuthContent() {
         when (formType) {
             FormType.Login -> {
                 LoginForm(
-                    state = LoginFormState(),
+                    state = state.loginFormState,
                     onEvent = { event ->
                               when (event) {
                                   LoginFormEvent.ForgotPasswordClicked -> {}
-                                  is LoginFormEvent.LoginClicked -> {}
+                                  is LoginFormEvent.LoginClicked -> { onLogin(event.email, event.password) }
                                   LoginFormEvent.SwitchToRegister -> { formType = FormType.Register }
                               }
                     },
@@ -86,10 +92,10 @@ fun AuthContent() {
             }
             FormType.Register -> {
                 RegisterForm(
-                    state = RegisterFormState(),
+                    state = state.registerFormState,
                     onEvent = { event ->
                         when (event) {
-                            is RegisterFormEvent.RegisterClicked -> {}
+                            is RegisterFormEvent.RegisterClicked -> { onRegister(event.registrationData) }
                             RegisterFormEvent.SwitchToLogin -> { formType = FormType.Login }
                         }
                     },
@@ -113,6 +119,8 @@ fun AuthContent() {
 @Composable
 fun AuthContentPreview() {
     SILKTheme {
-        AuthContent()
+        AuthContent(
+            state = AuthState(),
+        )
     }
 }

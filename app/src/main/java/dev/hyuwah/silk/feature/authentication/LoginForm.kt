@@ -13,7 +13,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,8 +41,6 @@ import dev.hyuwah.silk.ui.theme.SilkTextStyle
 data class LoginFormState(
     val email: String = "",
     val password: String = "",
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null
 )
 
 sealed interface LoginFormEvent {
@@ -55,7 +52,6 @@ sealed interface LoginFormEvent {
     ) : LoginFormEvent
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginForm(
     state: LoginFormState,
@@ -118,9 +114,8 @@ fun LoginForm(
         Spacer(modifier = Modifier.height(16.dp))
         CTAButton(
             text = "Login",
-            enabled = !state.isLoading,
             onClick = {
-                onEvent(LoginFormEvent.LoginClicked(email, state.password))
+                onEvent(LoginFormEvent.LoginClicked(email, password))
             },
             trailingIcon = Icons.Default.ArrowForward
         )

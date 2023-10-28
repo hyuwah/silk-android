@@ -29,6 +29,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.hyuwah.silk.feature.authentication.domain.model.RegistrationData
 import dev.hyuwah.silk.ui.button.CTAButton
 import dev.hyuwah.silk.ui.form.SilkPasswordTextField
 import dev.hyuwah.silk.ui.form.SilkTextField
@@ -38,25 +39,12 @@ import dev.hyuwah.silk.ui.theme.SILKTheme
 import dev.hyuwah.silk.ui.theme.SilkTextStyle
 
 data class RegisterFormState(
-    val firstName: String = "",
-    val lastName: String = "",
-    val nationalIdNumber: String = "",
-    val email: String = "",
-    val phoneNumber: String = "",
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null
+    val registrationData: RegistrationData = RegistrationData()
 )
 
 sealed interface RegisterFormEvent {
-    object SwitchToLogin : RegisterFormEvent
-    data class RegisterClicked(
-        val firstName: String,
-        val lastName: String,
-        val nationalIdNumber: String,
-        val email: String,
-        val phoneNumber: String,
-        val password: String
-    ) : RegisterFormEvent
+    data object SwitchToLogin : RegisterFormEvent
+    data class RegisterClicked(val registrationData: RegistrationData) : RegisterFormEvent
 }
 
 @Composable
@@ -66,11 +54,11 @@ fun RegisterForm(
     modifier: Modifier = Modifier
 ) {
     val focusManager = LocalFocusManager.current
-    var firstName by remember { mutableStateOf(state.firstName) }
-    var lastName by remember { mutableStateOf(state.lastName) }
-    var nationalIdNumber by remember { mutableStateOf(state.nationalIdNumber) }
-    var email by remember { mutableStateOf(state.email) }
-    var phoneNumber by remember { mutableStateOf(state.phoneNumber) }
+    var firstName by remember { mutableStateOf(state.registrationData.firstName) }
+    var lastName by remember { mutableStateOf(state.registrationData.lastName) }
+    var nationalIdNumber by remember { mutableStateOf(state.registrationData.nationalIdNumber) }
+    var email by remember { mutableStateOf(state.registrationData.email) }
+    var phoneNumber by remember { mutableStateOf(state.registrationData.phoneNumber) }
     var password by remember { mutableStateOf("") }
     var passwordConfirmation by remember { mutableStateOf("") }
     val passwordNotSame by remember {
@@ -208,10 +196,17 @@ fun RegisterForm(
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        CTAButton(text = "Register", enabled = isFormValid || state.isLoading, onClick = {
+        CTAButton(text = "Register", enabled = isFormValid, onClick = {
             onEvent(
                 RegisterFormEvent.RegisterClicked(
-                    firstName, lastName, nationalIdNumber, email, phoneNumber, password
+                    RegistrationData(
+                        firstName,
+                        lastName,
+                        nationalIdNumber,
+                        email,
+                        phoneNumber,
+                        password
+                    )
                 )
             )
         }, trailingIcon = Icons.Default.ArrowForward)
