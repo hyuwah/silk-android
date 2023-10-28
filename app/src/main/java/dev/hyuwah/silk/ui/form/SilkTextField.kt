@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.gigamole.composeshadowsplus.common.ShadowsPlusType
@@ -25,11 +26,11 @@ import com.gigamole.composeshadowsplus.softlayer.SoftLayerShadowContainer
 import dev.hyuwah.silk.ui.theme.LightGrey
 import dev.hyuwah.silk.ui.theme.SilkTextStyle
 
-fun Modifier.textFieldShadow() = this.then(
+fun Modifier.textFieldShadow(roundedRadius: Dp?) = this.then(
     shadowsPlus(
         type = ShadowsPlusType.SoftLayer,
         color = LightGrey.copy(alpha = 0.15f),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(roundedRadius ?: 8.dp),
         radius = 3.dp,
         spread = 1.dp,
         offset = DpOffset(0.dp, 4.dp)
@@ -66,13 +67,14 @@ fun SilkTextField(
         containerColor = Color.White,
         focusedIndicatorColor = Color.Transparent,
         unfocusedIndicatorColor = Color.Transparent,
-    )
+    ),
+    roundedRadius: Dp? = null,
 ) {
     SoftLayerShadowContainer {
         TextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = modifier.textFieldShadow(),
+            modifier = modifier.textFieldShadow(roundedRadius),
             enabled = enabled,
             readOnly = readOnly,
             textStyle = textStyle,
@@ -95,7 +97,7 @@ fun SilkTextField(
             maxLines = maxLines,
             minLines = minLines,
             interactionSource = interactionSource,
-            shape = shape,
+            shape = roundedRadius?.let { RoundedCornerShape(it) } ?: shape,
             colors = colors,
         )
     }
