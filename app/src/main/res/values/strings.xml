@@ -23,4 +23,5 @@
     <string name="button_register">Register</string>
     <string name="auth_switch_to_login_label">Sudah punya akun?</string>
     <string name="auth_switch_to_login_cta">Login sekarang</string>
+    <string name="home_service_package_section_label">Pilih Tipe Layanan Kesehatan Anda</string>
 </resources>
