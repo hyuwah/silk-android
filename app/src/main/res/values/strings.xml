@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">SILK</string>
+    <string name="auth_welcome_title"><![CDATA[Hai, <b>Selamat Datang</b>]]></string>
+    <string name="auth_welcome_sub_title_login">Silahkan login untuk melanjutkan</string>
+    <string name="silk_copyright">© SILK. All rights reserved.</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="input_placeholder_email">Masukkan email anda</string>
+    <string name="button_forgot_password">Lupa Password anda ?</string>
+    <string name="input_placeholder_password">Masukkan password anda</string>
+    <string name="button_login">Login</string>
+    <string name="auth_switch_to_register_label">Belum punya akun?</string>
+    <string name="auth_switch_to_register_cta">Daftar sekarang</string>
+    <string name="label_first_name">Nama Depan</string>
+    <string name="label_last_name">Nama Belakang</string>
+    <string name="label_national_id_num">No. KTP</string>
+    <string name="input_placeholder_national_id_num">Masukkan No. KTP anda</string>
+    <string name="label_phone">No. Telpon</string>
+    <string name="input_placeholder_phone">Masukkan No. Telpon anda</string>
+    <string name="label_password_confirmation">Konfirmasi Password</string>
+    <string name="input_placeholder_password_confirmation">Konfirmasi password anda</string>
+    <string name="password_confirmation_not_matched_error">Konfirmasi password tidak sama</string>
+    <string name="button_register">Register</string>
+    <string name="auth_switch_to_login_label">Sudah punya akun?</string>
+    <string name="auth_switch_to_login_cta">Login sekarang</string>
 </resources>

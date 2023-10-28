@@ -23,12 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.hyuwah.silk.R
 import dev.hyuwah.silk.ui.button.CTAButton
 import dev.hyuwah.silk.ui.form.SilkPasswordTextField
 import dev.hyuwah.silk.ui.form.SilkTextField
@@ -65,11 +67,11 @@ fun LoginForm(
     Column(
         modifier = modifier
     ) {
-        Text(text = "Email", style = SilkTextStyle.formInputLabel)
+        Text(text = stringResource(R.string.label_email), style = SilkTextStyle.formInputLabel)
         SilkTextField(
             value = email, onValueChange = { email = it },
             placeholder = {
-                Text(text = "Masukkan email anda", style = SilkTextStyle.body)
+                Text(text = stringResource(R.string.input_placeholder_email), style = SilkTextStyle.body)
             },
             keyboardOptions = KeyboardOptions.Default.copy(
                 imeAction = ImeAction.Next,
@@ -88,32 +90,37 @@ fun LoginForm(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Password", style = SilkTextStyle.formInputLabel)
-            Text(text = "Lupa Password anda ?",
+            Text(text = stringResource(R.string.label_password), style = SilkTextStyle.formInputLabel)
+            Text(text = stringResource(R.string.button_forgot_password),
                 style = SilkTextStyle.body.copy(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = PaleDarkBlue
                 ),
-                modifier = Modifier.focusProperties { canFocus = false }.clickable {
-                    onEvent(LoginFormEvent.ForgotPasswordClicked)
-                })
+                modifier = Modifier
+                    .focusProperties { canFocus = false }
+                    .clickable {
+                        onEvent(LoginFormEvent.ForgotPasswordClicked)
+                    })
         }
         SilkPasswordTextField(
             value = password, onValueChange = { password = it },
             placeholder = {
-                Text(text = "Masukkan password anda", style = SilkTextStyle.body)
+                Text(text = stringResource(R.string.input_placeholder_password), style = SilkTextStyle.body)
             },
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions {
                 focusManager.clearFocus()
             },
-            modifier = Modifier.padding(top = 8.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .fillMaxWidth(),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
         CTAButton(
-            text = "Login",
+            text = stringResource(R.string.button_login),
+            enabled = email.isNotBlank(),
             onClick = {
                 onEvent(LoginFormEvent.LoginClicked(email, password))
             },
@@ -126,12 +133,12 @@ fun LoginForm(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Belum punya akun?",
+                text = stringResource(R.string.auth_switch_to_register_label),
                 style = SilkTextStyle.body.copy(color = LightGrey)
             )
             Spacer(modifier = Modifier.size(8.dp))
             Text(
-                text = "Daftar sekarang",
+                text = stringResource(R.string.auth_switch_to_register_cta),
                 style = SilkTextStyle.body.copy(
                     fontWeight = FontWeight.SemiBold,
                     color = DarkBlue
