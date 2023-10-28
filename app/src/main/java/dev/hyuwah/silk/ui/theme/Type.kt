@@ -56,6 +56,17 @@ object SilkTextStyle {
         fontWeight = FontWeight.SemiBold,
         color = DarkBlue,
     )
+    val cardTitle = TextStyle(
+        fontSize = 18.sp,
+        fontFamily = gilroyFontFamily,
+        fontWeight = FontWeight.SemiBold,
+        color = DarkBlue,
+    )
+    val cardContent = TextStyle(
+        fontSize = 12.sp,
+        fontFamily = proximaNovaFontFamily,
+        color = PaleDarkBlue,
+    )
     val body = TextStyle(
         fontSize = 12.sp,
         fontFamily = proximaNovaFontFamily,
@@ -71,6 +82,11 @@ object SilkTextStyle {
         fontSize = 16.sp,
         fontFamily = gilroyFontFamily,
         fontWeight = FontWeight.SemiBold,
+        color = DarkBlue,
+    )
+    val tabLabel = TextStyle(
+        fontSize = 14.sp,
+        fontFamily = proximaNovaFontFamily,
         color = DarkBlue,
     )
 }
