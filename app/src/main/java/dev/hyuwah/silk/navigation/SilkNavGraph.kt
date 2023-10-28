@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import dev.hyuwah.silk.feature.authentication.AuthScreen
+import dev.hyuwah.silk.feature.authentication.presentation.AuthScreen
 
 @Composable
 fun SilkNavGraph(

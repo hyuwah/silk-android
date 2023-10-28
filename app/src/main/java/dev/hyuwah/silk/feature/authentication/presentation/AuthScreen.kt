@@ -1,4 +1,4 @@
-package dev.hyuwah.silk.feature.authentication
+package dev.hyuwah.silk.feature.authentication.presentation
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column

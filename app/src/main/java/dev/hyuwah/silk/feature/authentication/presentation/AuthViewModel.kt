@@ -1,4 +1,4 @@
-package dev.hyuwah.silk.feature.authentication
+package dev.hyuwah.silk.feature.authentication.presentation
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

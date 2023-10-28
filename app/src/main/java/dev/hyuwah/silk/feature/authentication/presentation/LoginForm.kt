@@ -1,4 +1,4 @@
-package dev.hyuwah.silk.feature.authentication
+package dev.hyuwah.silk.feature.authentication.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
