@@ -5,6 +5,7 @@ androidx-test-ext-junit = "1.1.5"
 chucker = "4.0.0"
 compose-bom = "2023.10.01"
 compose-shadowplus = "1.0.4"
+constraintlayout-compose = "1.1.0-alpha13"
 core-ktx = "1.12.0"
 espresso-core = "3.5.1"
 hilt = "2.48"
@@ -40,6 +41,7 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout-compose" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-androidx" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -66,5 +68,5 @@ hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 lifecycle = ["lifecycle-viewmodel", "lifecycle-livedata", "lifecycle-runtime-ktx", "lifecycle-java8"]
 compose = ["ui", "ui-graphics", "ui-tooling-preview", "material3"]
 debug-compose = ["ui-tooling", "ui-test-manifest"]
-compose-compatibilities = ["lifecycle-viewmodel-compose", "activity-compose", "navigation-compose", "hilt-navigation-compose"]
+compose-compatibilities = ["lifecycle-viewmodel-compose", "activity-compose", "navigation-compose", "hilt-navigation-compose", "constraintlayout-compose"]
 networking = ["retrofit", "retrofit-moshi", "moshi", "okhttp", "okhttp-logging-interceptor"]
