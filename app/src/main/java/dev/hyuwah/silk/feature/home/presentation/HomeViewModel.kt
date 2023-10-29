@@ -24,7 +24,7 @@ data class HomeState(
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    appPreferences: AppPreferences,
+    private val appPreferences: AppPreferences,
     homeRepository: HomeRepository
 ): ViewModel() {
 
@@ -55,5 +55,9 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun clearPrefs() {
+        appPreferences.clear()
     }
 }

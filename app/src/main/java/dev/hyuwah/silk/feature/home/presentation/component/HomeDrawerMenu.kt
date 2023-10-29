@@ -48,7 +48,8 @@ import dev.hyuwah.silk.ui.theme.SilkTextStyle
 fun HomeDrawerMenu(
     navController: NavController,
     userData: UserData? = null,
-    onNavigate: () -> Unit = {}
+    onNavigate: () -> Unit = {},
+    onLogout: () -> Unit = {}
 ) {
     ModalDrawerSheet(
         drawerShape = RectangleShape
@@ -127,11 +128,7 @@ fun HomeDrawerMenu(
         SilkButton(
             text = stringResource(R.string.button_logout),
             onClick = {
-                navController.navigate(Screens.Auth.route) {
-                    popUpTo(Screens.Home.route) {
-                        inclusive = true
-                    }
-                }
+                onLogout()
             },
             modifier = Modifier.padding(horizontal = 24.dp),
             shape = RoundedCornerShape(32.dp),
@@ -148,7 +145,10 @@ fun HomeDrawerMenu(
                 .padding(horizontal = 24.dp)
                 .fillMaxWidth()
         ) {
-            Text(text = stringResource(R.string.follow_us_at), style = SilkTextStyle.cardTitle.copy(fontSize = 16.sp))
+            Text(
+                text = stringResource(R.string.follow_us_at),
+                style = SilkTextStyle.cardTitle.copy(fontSize = 16.sp)
+            )
             Spacer(modifier = Modifier.width(8.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_visibility),
@@ -178,8 +178,14 @@ fun HomeDrawerMenu(
                 .padding(horizontal = 24.dp)
                 .fillMaxWidth()
         ) {
-            Text(text = stringResource(R.string.faq_label), style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold))
-            Text(text = stringResource(R.string.tnc_label), style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold))
+            Text(
+                text = stringResource(R.string.faq_label),
+                style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold)
+            )
+            Text(
+                text = stringResource(R.string.tnc_label),
+                style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold)
+            )
         }
 
         Spacer(modifier = Modifier.weight(0.1f))

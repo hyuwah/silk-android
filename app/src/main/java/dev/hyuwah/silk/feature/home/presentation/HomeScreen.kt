@@ -9,6 +9,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import dev.hyuwah.silk.feature.home.presentation.component.HomeDrawerMenu
+import dev.hyuwah.silk.navigation.Screens
 import kotlinx.coroutines.launch
 
 @Composable
@@ -26,6 +27,14 @@ fun HomeScreen(navController: NavController) {
                 onNavigate = {
                     scope.launch {
                         drawerState.close()
+                    }
+                },
+                onLogout = {
+                    viewModel.clearPrefs()
+                    navController.navigate(Screens.Auth.route) {
+                        popUpTo(Screens.Home.route) {
+                            inclusive = true
+                        }
                     }
                 }
             )

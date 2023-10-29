@@ -53,4 +53,10 @@ class AppPreferencesImpl @Inject constructor(
         set(value) {
             sharedPreferences.edit { putString(Key.Token.name, value) }
         }
+
+    override fun clear() {
+        sharedPreferences.edit {
+            clear()
+        }
+    }
 }
