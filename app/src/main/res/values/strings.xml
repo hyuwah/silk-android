@@ -41,4 +41,10 @@
     <string name="home_banner_3_title">Track Pemeriksaan</string>
     <string name="home_banner_3_desc">Kamu dapat mengecek progress pemeriksaanmu disini</string>
     <string name="home_banner_3_cta">Track</string>
+    <string name="my_profile">Profile Saya</string>
+    <string name="preferences">Pengaturan</string>
+    <string name="follow_us_at">Ikuti kami di</string>
+    <string name="faq_label">FAQ</string>
+    <string name="tnc_label">Terms and Conditions</string>
+    <string name="button_logout">Logout</string>
 </resources>

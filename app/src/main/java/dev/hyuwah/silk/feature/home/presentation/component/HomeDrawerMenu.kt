@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -87,7 +88,7 @@ fun HomeDrawerMenu(
                 }
         ) {
             Text(
-                text = "Profile Saya",
+                text = stringResource(R.string.my_profile),
                 style = SilkTextStyle.body.copy(fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             )
             Spacer(modifier = Modifier.width(64.dp))
@@ -108,7 +109,7 @@ fun HomeDrawerMenu(
                 }
         ) {
             Text(
-                text = "Pengaturan",
+                text = stringResource(R.string.preferences),
                 style = SilkTextStyle.body.copy(fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             )
             Spacer(modifier = Modifier.width(64.dp))
@@ -120,7 +121,7 @@ fun HomeDrawerMenu(
         }
         Spacer(modifier = Modifier.height(40.dp))
         SilkButton(
-            text = "Logout",
+            text = stringResource(R.string.button_logout),
             onClick = {
                 navController.navigate(Screens.Auth.route) {
                     popUpTo(Screens.Home.route) {
@@ -143,7 +144,7 @@ fun HomeDrawerMenu(
                 .padding(horizontal = 24.dp)
                 .fillMaxWidth()
         ) {
-            Text(text = "Ikuti kami di", style = SilkTextStyle.cardTitle.copy(fontSize = 16.sp))
+            Text(text = stringResource(R.string.follow_us_at), style = SilkTextStyle.cardTitle.copy(fontSize = 16.sp))
             Spacer(modifier = Modifier.width(8.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_visibility),
@@ -173,8 +174,8 @@ fun HomeDrawerMenu(
                 .padding(horizontal = 24.dp)
                 .fillMaxWidth()
         ) {
-            Text(text = "FAQ", style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold))
-            Text(text = "Terms and Conditions", style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold))
+            Text(text = stringResource(R.string.faq_label), style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold))
+            Text(text = stringResource(R.string.tnc_label), style = SilkTextStyle.tertiaryInfo.copy(fontWeight = FontWeight.Bold))
         }
 
         Spacer(modifier = Modifier.weight(0.1f))
