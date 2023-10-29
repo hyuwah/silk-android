@@ -22,6 +22,7 @@ fun HomeScreen(navController: NavController) {
         drawerContent = {
             HomeDrawerMenu(
                 navController = navController,
+                userData = viewModel.state.userData,
                 onNavigate = {
                     scope.launch {
                         drawerState.close()

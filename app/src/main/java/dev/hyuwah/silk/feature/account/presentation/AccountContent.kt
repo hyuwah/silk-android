@@ -34,6 +34,7 @@ import dev.hyuwah.silk.ui.theme.SILKTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountContent(
+    state: AccountState,
     onNavigationBack: () -> Unit = {}
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
@@ -87,7 +88,10 @@ fun AccountContent(
                 modifier = Modifier.padding(horizontal = 48.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
-            ProfileContent(modifier = Modifier.padding(24.dp))
+            ProfileContent(
+                userData = state.userData,
+                modifier = Modifier.padding(24.dp)
+            )
 
             Spacer(modifier = Modifier.height(48.dp))
             GetNotificationBanner(onGetNotificationClicked = {})
@@ -99,6 +103,8 @@ fun AccountContent(
 @Composable
 fun AccountContentPreview() {
     SILKTheme {
-        AccountContent()
+        AccountContent(
+            state = AccountState()
+        )
     }
 }

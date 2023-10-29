@@ -33,7 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import dev.hyuwah.silk.R
+import dev.hyuwah.silk.common.domain.model.UserData
 import dev.hyuwah.silk.navigation.Screens
 import dev.hyuwah.silk.ui.button.SilkButton
 import dev.hyuwah.silk.ui.modifier.plainClickable
@@ -45,6 +47,7 @@ import dev.hyuwah.silk.ui.theme.SilkTextStyle
 @Composable
 fun HomeDrawerMenu(
     navController: NavController,
+    userData: UserData? = null,
     onNavigate: () -> Unit = {}
 ) {
     ModalDrawerSheet(
@@ -57,8 +60,9 @@ fun HomeDrawerMenu(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+            AsyncImage(
+                model = userData?.avatar.orEmpty(),
+                placeholder = painterResource(id = R.drawable.img_avatar),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -69,7 +73,7 @@ fun HomeDrawerMenu(
                 verticalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.padding(start = 16.dp)
             ) {
-                Text(text = "Angga Praja", style = SilkTextStyle.cardTitle)
+                Text(text = userData?.fullName ?: "-", style = SilkTextStyle.cardTitle)
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = "Membership BBLK",
@@ -186,6 +190,11 @@ fun HomeDrawerMenu(
 @Composable
 fun HomeDrawerMenuPreview() {
     SILKTheme {
-        HomeDrawerMenu(navController = rememberNavController())
+        HomeDrawerMenu(
+            userData = UserData(
+                -1, "", "First", "Last", ""
+            ),
+            navController = rememberNavController()
+        )
     }
 }

@@ -26,7 +26,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import dev.hyuwah.silk.R
+import dev.hyuwah.silk.common.domain.model.UserData
 import dev.hyuwah.silk.ui.theme.DarkBlue2
 import dev.hyuwah.silk.ui.theme.PaleDarkBlue
 import dev.hyuwah.silk.ui.theme.SILKTheme
@@ -34,7 +36,8 @@ import dev.hyuwah.silk.ui.theme.SilkTextStyle
 
 @Composable
 fun ProfileCard(
-    modifier: Modifier = Modifier
+    userData: UserData? = null,
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -49,8 +52,9 @@ fun ProfileCard(
             modifier = Modifier
                 .padding(horizontal = 24.dp, vertical = 32.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+            AsyncImage(
+                model = userData?.avatar.orEmpty(),
+                placeholder = painterResource(id = R.drawable.img_avatar),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -62,7 +66,7 @@ fun ProfileCard(
                 modifier = Modifier.padding(start = 16.dp)
             ) {
                 Text(
-                    text = "Angga Praja",
+                    text = userData?.fullName ?: "-",
                     style = SilkTextStyle.cardTitle.copy(color = MaterialTheme.colorScheme.onPrimary)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -91,6 +95,10 @@ fun ProfileCard(
 @Composable
 fun ProfileCardPreview() {
     SILKTheme {
-        ProfileCard()
+        ProfileCard(
+            userData = UserData(
+                -1, "", "First", "Last", ""
+            ),
+        )
     }
 }

@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.hyuwah.silk.common.domain.model.UserData
 import dev.hyuwah.silk.feature.account.presentation.component.AccountDataSwitcher
 import dev.hyuwah.silk.feature.account.presentation.component.PersonalDataForm
 import dev.hyuwah.silk.feature.account.presentation.component.PersonalDataFormState
@@ -18,7 +19,10 @@ import dev.hyuwah.silk.ui.theme.SILKTheme
 
 
 @Composable
-fun ProfileContent(modifier: Modifier = Modifier) {
+fun ProfileContent(
+    userData: UserData? = null,
+    modifier: Modifier = Modifier
+) {
     Surface(
         shadowElevation = 2.dp,
         shape = RoundedCornerShape(20.dp),
@@ -26,7 +30,9 @@ fun ProfileContent(modifier: Modifier = Modifier) {
     ) {
         Column {
             // Profile Card
-            ProfileCard()
+            ProfileCard(
+                userData = userData
+            )
             Spacer(modifier = Modifier.height(20.dp))
             // Account Data Switcher
             AccountDataSwitcher(
@@ -35,7 +41,13 @@ fun ProfileContent(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(20.dp))
             // Personal Data
             PersonalDataForm(
-                state = PersonalDataFormState(),
+                state = PersonalDataFormState(
+                    firstName = userData?.firstName.orEmpty(),
+                    lastName = userData?.lastName.orEmpty(),
+                    nationalIdNumber = "",
+                    email = userData?.email.orEmpty(),
+                    phoneNumber = ""
+            ),
                 onSaveClicked = {},
                 modifier = Modifier.padding(horizontal = 20.dp)
             )

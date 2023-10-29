@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.hyuwah.silk.common.data.local.AppPreferences
 import dev.hyuwah.silk.common.domain.model.CallResult
+import dev.hyuwah.silk.common.domain.model.UserData
 import dev.hyuwah.silk.feature.home.domain.model.Product
 import dev.hyuwah.silk.feature.home.domain.model.ServicePackage
 import dev.hyuwah.silk.feature.home.domain.repository.HomeRepository
@@ -17,10 +19,12 @@ data class HomeState(
     val productTypesFilter: List<Pair<String, Product.Type?>> = emptyList(),
     val products: List<Product> = emptyList(),
     val servicePackages: List<ServicePackage> = emptyList(),
+    val userData: UserData? = null,
 )
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    appPreferences: AppPreferences,
     homeRepository: HomeRepository
 ): ViewModel() {
 
@@ -33,7 +37,8 @@ class HomeViewModel @Inject constructor(
                     "All Product" to null,
                     "Layanan Kesehatan" to Product.Type.HealthService,
                     "Alat Kesehatan" to Product.Type.MedicalDevice,
-                )
+                ),
+                userData = appPreferences.userData
             )
 
             when (val productsResult = homeRepository.getProducts()) {
