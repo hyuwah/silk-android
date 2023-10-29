@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,12 +31,14 @@ fun SilkButton(
     enabled: Boolean = true,
     trailingIcon: ImageVector? = null,
     shape: Shape = RoundedCornerShape(8.dp),
+    colors: ButtonColors = ButtonDefaults.buttonColors(),
 ) {
     Button(
         onClick = { onClick() },
         shape = shape,
         enabled = enabled,
-        modifier = modifier
+        modifier = modifier,
+        colors = colors
     ) {
         Row(
             modifier = Modifier,
