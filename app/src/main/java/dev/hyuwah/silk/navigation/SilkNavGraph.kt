@@ -23,7 +23,7 @@ fun SilkNavGraph(
         composable(Screens.Home.route) {
             HomeScreen(navController = navController)
         }
-        composable(Screens.Profile.route) {
+        composable(Screens.Account.route) {
             Scaffold {
                 Box(modifier = Modifier.padding(it)) {
                     Text(text = "Profile Placeholder")

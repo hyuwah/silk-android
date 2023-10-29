@@ -83,7 +83,7 @@ fun HomeDrawerMenu(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
                 .plainClickable {
-                    navController.navigate(Screens.Profile.route)
+                    navController.navigate(Screens.Account.route)
                     onNavigate()
                 }
         ) {
@@ -104,7 +104,7 @@ fun HomeDrawerMenu(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
                 .plainClickable {
-                    navController.navigate(Screens.Profile.route)
+                    navController.navigate(Screens.Account.route)
                     onNavigate()
                 }
         ) {
