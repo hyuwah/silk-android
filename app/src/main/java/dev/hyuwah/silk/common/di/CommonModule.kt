@@ -10,8 +10,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.hyuwah.silk.BuildConfig
-import dev.hyuwah.silk.common.data.local.LocalPreferences
-import dev.hyuwah.silk.common.data.local.LocalPreferencesImpl
+import dev.hyuwah.silk.common.data.local.AppPreferences
+import dev.hyuwah.silk.common.data.local.AppPreferencesImpl
 import dev.hyuwah.silk.common.data.remote.ReqResService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -64,12 +64,16 @@ class CommonModule {
     }
 
     @Provides
-    fun provideLocalPreferences(context: Context): LocalPreferences {
-        return LocalPreferencesImpl(
+    fun provideLocalPreferences(
+        context: Context,
+        moshi: Moshi
+    ): AppPreferences {
+        return AppPreferencesImpl(
             context.getSharedPreferences(
                 "silk_preferences",
                 Context.MODE_PRIVATE
-            )
+            ),
+            moshi
         )
     }
 

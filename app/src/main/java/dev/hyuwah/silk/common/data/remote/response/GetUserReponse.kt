@@ -7,10 +7,10 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class GetUserReponse(
     @Json(name = "data")
-    val `data`: Data?
+    val userDto: UserDto?
 ) {
     @JsonClass(generateAdapter = true)
-    data class Data(
+    data class UserDto(
         @Json(name = "avatar")
         val avatar: String?,
         @Json(name = "email")

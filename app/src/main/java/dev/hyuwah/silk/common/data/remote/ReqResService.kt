@@ -22,8 +22,8 @@ interface ReqResService {
         @Body request: LoginRegisterRequest,
         ): Response<RegisterResponse>
 
-    @GET("/api/users/:id")
+    @GET("/api/users/{id}")
     suspend fun getUser(
-        @Path("id") userId: String,
+        @Path("id") userId: Long,
     ): Response<GetUserReponse>
 }
