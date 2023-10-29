@@ -32,4 +32,13 @@
     <string name="account_personal_data_form_info">Pastikan profile anda terisi dengan benar, data pribadi anda terjamin keamanannya.</string>
     <string name="account_personal_data_save">Simpan Profile</string>
     <string name="profile_card_notice">Lengkapi profile anda untuk memaksimalkan penggunaan aplikasi</string>
+    <string name="home_banner_1_title"><![CDATA[Solusi, <b>Kesehatan Anda</b>]]></string>
+    <string name="home_banner_1_desc">Update informasi seputar kesehatan semua bisa disini!</string>
+    <string name="home_banner_1_cta">Selengkapnya</string>
+    <string name="home_banner_2_title">Layanan Khusus</string>
+    <string name="home_banner_2_desc">Tes Covid 19, Cegah Corona Sedini Mungkin</string>
+    <string name="home_banner_2_cta">Daftar Tes</string>
+    <string name="home_banner_3_title">Track Pemeriksaan</string>
+    <string name="home_banner_3_desc">Kamu dapat mengecek progress pemeriksaanmu disini</string>
+    <string name="home_banner_3_cta">Track</string>
 </resources>

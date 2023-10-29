@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.hyuwah.silk.R
@@ -105,38 +106,38 @@ fun HomeContent(
             // Main Banner Section
             item {
                 CardBanner(
-                    title = "Solusi, <b>Kesehatan Anda</b>",
-                    content = "Update informasi seputar kesehatan semua bisa disini!",
+                    title = stringResource(R.string.home_banner_1_title),
+                    content = stringResource(R.string.home_banner_1_desc),
                     imagePainter = painterResource(id = R.drawable.illustration_calendar),
                     highlightCard = true,
                     cardBottomSlot = {
                         SilkButton(
-                            text = "Selengkapnya",
+                            text = stringResource(R.string.home_banner_1_cta),
                             onClick = { /*TODO*/ },
                             modifier = Modifier
                         )
                     }
                 )
                 CardBanner(
-                    title = "Layanan Khusus",
-                    content = "Tes Covid 19, Cegah Corona Sedini Mungkin",
+                    title = stringResource(R.string.home_banner_2_title),
+                    content = stringResource(R.string.home_banner_2_desc),
                     imagePainter = painterResource(id = R.drawable.illustration_vaccine),
                     cardBottomSlot = {
                         SilkOutlinedButton(
-                            text = "Daftar Tes",
+                            text = stringResource(R.string.home_banner_2_cta),
                             onClick = { /*TODO*/ },
                             trailingIcon = Icons.Default.ArrowForward
                         )
                     }
                 )
                 CardBanner(
-                    title = "Track Pemeriksaan",
-                    content = "Kamu dapat mengecek progress pemeriksaanmu disini",
+                    title = stringResource(R.string.home_banner_3_title),
+                    content = stringResource(R.string.home_banner_3_desc),
                     imagePainter = painterResource(id = R.drawable.illustration_tracking),
                     imagePosition = CardBannerImagePos.Left,
                     cardBottomSlot = {
                         SilkOutlinedButton(
-                            text = "Track",
+                            text = stringResource(R.string.home_banner_3_cta),
                             onClick = { /*TODO*/ },
                             trailingIcon = Icons.Default.ArrowForward
                         )

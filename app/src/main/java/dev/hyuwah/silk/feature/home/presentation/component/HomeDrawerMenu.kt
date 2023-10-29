@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,10 +36,8 @@ import dev.hyuwah.silk.R
 import dev.hyuwah.silk.navigation.Screens
 import dev.hyuwah.silk.ui.button.SilkButton
 import dev.hyuwah.silk.ui.modifier.plainClickable
-import dev.hyuwah.silk.ui.theme.DarkBlue
 import dev.hyuwah.silk.ui.theme.Grey
 import dev.hyuwah.silk.ui.theme.PaleDarkBlue
-import dev.hyuwah.silk.ui.theme.Red
 import dev.hyuwah.silk.ui.theme.SILKTheme
 import dev.hyuwah.silk.ui.theme.SilkTextStyle
 
@@ -132,7 +131,7 @@ fun HomeDrawerMenu(
             modifier = Modifier.padding(horizontal = 24.dp),
             shape = RoundedCornerShape(32.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Red
+                containerColor = MaterialTheme.colorScheme.tertiary
             )
         )
         // Social Media
@@ -149,19 +148,19 @@ fun HomeDrawerMenu(
             Icon(
                 painter = painterResource(id = R.drawable.ic_visibility),
                 contentDescription = null,
-                tint = DarkBlue
+                tint = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.width(8.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_tune),
                 contentDescription = null,
-                tint = DarkBlue
+                tint = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.width(8.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_business),
                 contentDescription = null,
-                tint = DarkBlue
+                tint = MaterialTheme.colorScheme.primary
             )
         }
 

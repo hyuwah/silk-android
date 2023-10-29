@@ -20,6 +20,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,7 +36,6 @@ import androidx.compose.ui.unit.sp
 import dev.hyuwah.silk.R
 import dev.hyuwah.silk.feature.home.domain.model.Product
 import dev.hyuwah.silk.ui.form.SilkTextField
-import dev.hyuwah.silk.ui.theme.DarkBlue
 import dev.hyuwah.silk.ui.theme.SILKTheme
 import dev.hyuwah.silk.ui.theme.SilkTextStyle
 
@@ -112,10 +112,10 @@ fun HomeProductSearchFilter(
                     label = { Text(text = label) },
                     shape = RoundedCornerShape(24.dp),
                     colors = FilterChipDefaults.elevatedFilterChipColors(
-                        selectedContainerColor = DarkBlue,
+                        selectedContainerColor = MaterialTheme.colorScheme.primary,
                         selectedLabelColor = Color.White,
                         containerColor = Color.White,
-                        labelColor = DarkBlue
+                        labelColor = MaterialTheme.colorScheme.primary
                     ),
                     elevation = FilterChipDefaults.elevatedFilterChipElevation(
                         elevation = 2.dp,
