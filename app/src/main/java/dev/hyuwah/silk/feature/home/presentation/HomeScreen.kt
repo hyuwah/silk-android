@@ -6,12 +6,14 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import dev.hyuwah.silk.feature.home.presentation.component.HomeDrawerMenu
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(navController: NavController) {
+    val viewModel: HomeViewModel = hiltViewModel()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     ModalNavigationDrawer(
@@ -29,6 +31,7 @@ fun HomeScreen(navController: NavController) {
         }
     ) {
         HomeContent(
+            state = viewModel.state,
             onNavMenuClicked = {
                 scope.launch {
                     drawerState.open()

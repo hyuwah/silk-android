@@ -45,24 +45,12 @@ import dev.hyuwah.silk.ui.theme.SILKTheme
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeContent(
+    state: HomeState,
     onNavMenuClicked: () -> Unit = {}
 ) {
-    val servicePackages by remember {
-        mutableStateOf(DummyLocalDataSource.getServicePackages())
-    }
-    val products by remember {
-        mutableStateOf(DummyLocalDataSource.getProducts())
-    }
-
-
     var searchQuery by remember {
         mutableStateOf("")
     }
-    val productTypesFilter = listOf(
-        "All Product" to null,
-        "Layanan Kesehatan" to Product.Type.HealthService,
-        "Alat Kesehatan" to Product.Type.MedicalDevice,
-    )
     var selectedProductType by remember {
         mutableStateOf<Product.Type?>(null)
     }
@@ -149,7 +137,7 @@ fun HomeContent(
                 HomeProductSearchFilter(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     searchQuery = searchQuery,
-                    productTypesFilter = productTypesFilter,
+                    productTypesFilter = state.productTypesFilter,
                     selectedProductType = selectedProductType,
                     onSearchQuery = {
                         searchQuery = it
@@ -164,7 +152,7 @@ fun HomeContent(
                     contentPadding = PaddingValues(horizontal = 16.dp),
                     modifier = Modifier
                 ) {
-                    items(products.filter { product ->
+                    items(state.products.filter { product ->
                       product.name.lowercase().contains(searchQuery.lowercase().trim())
                               && (selectedProductType?.let { product.type == it } ?: true)
                     }, key = { it.name } ) { data ->
@@ -180,7 +168,7 @@ fun HomeContent(
                 )
             }
 
-            items(servicePackages, key = { it.name }) { data ->
+            items(state.servicePackages, key = { it.name }) { data ->
                 ServicePackageCard(data = data, onClicked = {}, modifier = Modifier.padding(horizontal = 16.dp))
             }
 
@@ -199,6 +187,8 @@ fun HomeContent(
 @Composable
 fun HomeContentPreview() {
     SILKTheme {
-        HomeContent()
+        HomeContent(
+            state = HomeState()
+        )
     }
 }
