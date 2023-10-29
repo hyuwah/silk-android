@@ -30,6 +30,10 @@ import androidx.compose.ui.unit.dp
 import dev.hyuwah.silk.R
 import dev.hyuwah.silk.feature.home.data.local.DummyLocalDataSource
 import dev.hyuwah.silk.feature.home.domain.model.Product
+import dev.hyuwah.silk.feature.home.presentation.component.HomeProductSearchFilter
+import dev.hyuwah.silk.feature.home.presentation.component.HomeServiceTypeTab
+import dev.hyuwah.silk.feature.home.presentation.component.ProductCard
+import dev.hyuwah.silk.feature.home.presentation.component.ServicePackageCard
 import dev.hyuwah.silk.ui.button.SilkButton
 import dev.hyuwah.silk.ui.button.SilkOutlinedButton
 import dev.hyuwah.silk.ui.section.CardBanner

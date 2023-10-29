@@ -25,6 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.parseAsHtml
 import dev.hyuwah.silk.R
 import dev.hyuwah.silk.feature.authentication.domain.model.RegistrationData
+import dev.hyuwah.silk.feature.authentication.presentation.component.LoginForm
+import dev.hyuwah.silk.feature.authentication.presentation.component.LoginFormEvent
+import dev.hyuwah.silk.feature.authentication.presentation.component.RegisterForm
+import dev.hyuwah.silk.feature.authentication.presentation.component.RegisterFormEvent
 import dev.hyuwah.silk.ui.text.toAnnotatedString
 import dev.hyuwah.silk.ui.theme.PaleDarkBlue
 import dev.hyuwah.silk.ui.theme.SILKTheme

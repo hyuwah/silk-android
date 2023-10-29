@@ -1,4 +1,4 @@
-package dev.hyuwah.silk.feature.home.presentation
+package dev.hyuwah.silk.feature.home.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

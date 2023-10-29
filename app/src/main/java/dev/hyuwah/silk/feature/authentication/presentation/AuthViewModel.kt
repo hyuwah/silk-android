@@ -10,6 +10,8 @@ import dev.hyuwah.silk.common.domain.model.CallResult
 import dev.hyuwah.silk.common.domain.model.LoginRegisterRequest
 import dev.hyuwah.silk.common.domain.repository.AuthRepository
 import dev.hyuwah.silk.feature.authentication.domain.model.RegistrationData
+import dev.hyuwah.silk.feature.authentication.presentation.component.LoginFormState
+import dev.hyuwah.silk.feature.authentication.presentation.component.RegisterFormState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
