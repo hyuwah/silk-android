@@ -30,6 +30,7 @@ import com.gigamole.composeshadowsplus.common.ShadowsPlusType
 import com.gigamole.composeshadowsplus.common.shadowsPlus
 import com.gigamole.composeshadowsplus.softlayer.SoftLayerShadowContainer
 import dev.hyuwah.silk.R
+import dev.hyuwah.silk.ui.tab.SilkTab
 import dev.hyuwah.silk.ui.theme.Cyan
 import dev.hyuwah.silk.ui.theme.LightGrey
 import dev.hyuwah.silk.ui.theme.SILKTheme
@@ -54,59 +55,16 @@ fun HomeServiceTypeTab(
             )
             .then(modifier)
     ) {
-        Text(text = stringResource(R.string.home_service_package_section_label), style = SilkTextStyle.formInputLabel)
+        Text(
+            text = stringResource(R.string.home_service_package_section_label),
+            style = SilkTextStyle.formInputLabel
+        )
         Spacer(Modifier.height(16.dp))
-        SoftLayerShadowContainer {
-            TabRow(
-                selectedTabIndex = state,
-                indicator = {},
-                modifier = Modifier
-                    .padding(vertical = 4.dp)
-                    .shadowsPlus(
-                        type = ShadowsPlusType.SoftLayer,
-                        radius = 2.dp,
-                        spread = 1.dp,
-                        color = LightGrey.copy(alpha = 0.2f),
-                        shape = RoundedCornerShape(24.dp),
-                        offset = DpOffset(0.dp, 2.dp)
-                    )
-                    .wrapContentHeight()
-                    .clip(RoundedCornerShape(24.dp))
-
-            ) {
-                titles.forEachIndexed { index, title ->
-                    FancyTab(
-                        title = title,
-                        onClick = { state = index },
-                        selected = (index == state)
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun FancyTab(title: String, selected: Boolean, onClick: () -> Unit) {
-    val backgroundColor = if (selected) Cyan else Color.Transparent
-    Tab(selected, onClick) {
-        Column(
-            Modifier
-                .padding(4.dp)
-                .wrapContentHeight()
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(24.dp))
-                .background(backgroundColor)
-                .padding(vertical = 10.dp)
-        ) {
-            Text(
-                text = title,
-                style = SilkTextStyle.tabLabel.copy(
-                    fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal
-                ),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-        }
+        SilkTab(
+            selectedTabIndex = state,
+            tabLabels = titles,
+            onTabSelected = { state = it }
+        )
     }
 }
 
