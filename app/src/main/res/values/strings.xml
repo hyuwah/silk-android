@@ -26,4 +26,10 @@
     <string name="home_service_package_section_label">Pilih Tipe Layanan Kesehatan Anda</string>
     <string name="product_status_available">Tersedia</string>
     <string name="product_status_unavailable">Kosong</string>
+    <string name="account_data_switcher_label">Pilih data yang ingin ditampilkan</string>
+    <string name="account_personal_data_title">Data Diri</string>
+    <string name="account_personal_data_desc">Data diri anda sesuai KTP</string>
+    <string name="account_personal_data_form_info">Pastikan profile anda terisi dengan benar, data pribadi anda terjamin keamanannya.</string>
+    <string name="account_personal_data_save">Simpan Profile</string>
+    <string name="profile_card_notice">Lengkapi profile anda untuk memaksimalkan penggunaan aplikasi</string>
 </resources>
